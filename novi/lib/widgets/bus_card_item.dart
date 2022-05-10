@@ -1,33 +1,65 @@
 import 'package:flutter/material.dart';
 import 'package:novi/widgets/app_buttons.dart';
 
-class BusCard extends StatelessWidget {
+class AppCardHorizontal extends StatelessWidget {
   final String imageUrl;
   final String busName;
-  final String journey;
+  final String description;
+  final String actionText;
+  final VoidCallback onButtonClick;
 
-  const BusCard({Key? key, required this.imageUrl, required this.busName, required this.journey}) : super(key: key);
+  const AppCardHorizontal({
+    Key? key,
+    required this.imageUrl,
+    required this.busName,
+    required this.description,
+    required this.actionText,
+    required this.onButtonClick,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(left: 12, top: 8),
+      height: 100,
       width: MediaQuery.of(context).size.width,
-      height: 80,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
         children: [
-          Image.network(imageUrl, height: 80, width: 80),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Expanded(child: Column(children: [Text(busName), const SizedBox(height: 4), Text(journey)])),
+          ClipRRect(
+              child: Image.network(
+                imageUrl,
+                height: 100,
+                width: 100,
+                fit: BoxFit.cover,
+              ),
+              borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(8), topLeft: Radius.circular(8))),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    busName,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    description,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ),
           ),
           AppButtonSmall(
-            text: "Manage",
-            onButtonClick: () {},
+            text: actionText,
+            onButtonClick: () => onButtonClick.call(),
+            isPrimary: true,
           )
         ],
       ),

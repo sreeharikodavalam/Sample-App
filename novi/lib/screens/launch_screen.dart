@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:novi/constents/app_colors.dart';
+import 'package:novi/constants/app_colors.dart';
 import 'package:novi/screens/login_screen.dart';
 import 'package:novi/utils.dart';
 import 'package:novi/widgets/app_buttons.dart';
