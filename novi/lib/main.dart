@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:novi/splash_screen.dart';
+import 'package:novi/screens/launch_screen.dart';
 
 void main() {
   runApp(const MyApp());
