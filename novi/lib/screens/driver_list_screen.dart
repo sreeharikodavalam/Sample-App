@@ -20,8 +20,8 @@ class _DriverListState extends State<DriverList> {
         appBar: AppBar(
           systemOverlayStyle: const SystemUiOverlayStyle(
             statusBarColor: Colors.black,
-            statusBarIconBrightness: Brightness.light, // For Android (dark icons)
-            statusBarBrightness: Brightness.light, // For iOS (dark icons)
+            statusBarIconBrightness: Brightness.light, 
+            statusBarBrightness: Brightness.light,
           ),
           toolbarHeight: AppBar().preferredSize.height * 1.5,
           title: const Text("Driver List"),
@@ -38,7 +38,6 @@ class _DriverListState extends State<DriverList> {
               Expanded(
                 child: ListView.builder(
                     shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
                     padding: const EdgeInsets.only(top:8.0, bottom: 8.0),
                     itemCount: 25,
                     itemBuilder: (BuildContext context, int index) {
@@ -47,29 +46,63 @@ class _DriverListState extends State<DriverList> {
                         child: AppCardHorizontal(
                           imageUrl: 'https://www.thenewsminute.com/sites/default/files/KSRTC_Facebook_3062021_1200.jpg',
                           busName: "KSRTC",
-                          description: "Swift Scaniya P-Series",
-                          actionText: "Manage",
-                          onButtonClick: () => pushScreen(
-                            context,
-                            const BusManageScreen(
-                              busTitle: "KSRTC Swift Scaniya P-Series",
-                              busId: "0",
-                            ),
-                          ),
+                          description: "Licence No : 56465462131123",
+                          actionText: "Delete",
+                          onButtonClick: () => _confirmDeletion(),
                         ),
                       );
                     }),
               ),
-              AppButtonLarge(
-                text: "Add Driver",
-                onButtonClick: () {
-                  pushScreen(context  , const AddDriverScreen());
-                },
-                isPrimary: true,
+              Padding(
+                padding: const EdgeInsets.only(left: 24, right: 24, bottom: 4, top: 4),
+                child: AppButtonLarge(
+                  text: "Add Driver",
+                  onButtonClick: () {
+                    pushScreen(context  , const AddDriverScreen());
+                  },
+                  isPrimary: true,
+                ),
               ),
             ],
           ),
         )
     );
   }
+  Future<void> _confirmDeletion() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Are you sure want to delete driver?'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text('This action cant be reverted'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Back'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ), TextButton(
+              child: const Text('Delete'),
+              onPressed: () {
+                Navigator.of(context).pop();
+                customDialog(context: context, title: "Deleted ", description: "driver data deleted successfully");
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+
+
 }
+
+

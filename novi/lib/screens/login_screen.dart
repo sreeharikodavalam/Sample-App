@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:novi/screens/home_screen.dart';
 import 'package:novi/utils.dart';
 import 'package:novi/widgets/app_buttons.dart';
@@ -15,72 +16,87 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _controllerPassword = TextEditingController();
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         color: Colors.white,
-        child: Stack(
+        child: Column(
           children: [
-            ListView(
-              children: [
-                Container(
-                  color: Colors.black,
-                  width: MediaQuery.of(context).size.width,
-                  height: 300,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 18.0, bottom: 24),
-                    child: Column(mainAxisAlignment: MainAxisAlignment.end, crossAxisAlignment: CrossAxisAlignment.start, children: const [
-                      Text(
-                        "Welcome",
-                        style: TextStyle(fontSize: 44, color: Colors.white, fontWeight: FontWeight.bold),
+            Expanded(
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.width * .7,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage("assets/background_trian.png"),
+                        fit: BoxFit.fill,
                       ),
-                      SizedBox(height: 8),
-                      Text(
-                        "Manage your Bus and Drivers",
-                        style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 18.0, bottom: 24),
+                      child: Column(mainAxisAlignment: MainAxisAlignment.end, crossAxisAlignment: CrossAxisAlignment.start, children: const [
+                        Text(
+                          "Welcome",
+                          style: TextStyle(fontSize: 44, color: Colors.white, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          "Manage your Bus and Drivers",
+                          style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+                        ),
+                      ]),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  Container(
+                    margin: const EdgeInsets.all(20),
+                    child: TextField(
+                      controller: _controllerUsername,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Enter Username',
                       ),
-                    ]),
-                  ),
-                ),
-                const SizedBox(
-                  height: 24,
-                ),
-                Container(
-                  margin: const EdgeInsets.all(20),
-                  child: TextField(
-                    controller: _controllerUsername,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Enter Username',
+                      onChanged: (text) {},
                     ),
-                    onChanged: (text) {},
                   ),
-                ),
-                Container(
-                  margin: const EdgeInsets.all(20),
-                  child: TextField(
-                    controller: _controllerPassword,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Enter Password',
+                  Container(
+                    margin: const EdgeInsets.all(20),
+                    child: TextField(
+                      controller: _controllerPassword,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Enter Password',
+                      ),
+                      onChanged: (text) {},
                     ),
-                    onChanged: (text) {},
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
+            Padding(
+              padding: const EdgeInsets.only(left: 24, right: 24, bottom: 24, top: 4),
               child: AppButtonLarge(
                 text: "Login",
                 onButtonClick: () {
-                  pushScreen(context  , const HomeScreen());
+                  pushScreen(context, const HomeScreen());
                 },
                 isPrimary: true,
               ),
-            )
+            ),
           ],
         ),
       ),

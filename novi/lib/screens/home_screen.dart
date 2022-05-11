@@ -64,9 +64,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 actionText: "Manage",
                 onButtonClick: () => pushScreen(
                   context,
-                  const BusManageScreen(
+                   BusManageScreen(
                     busTitle: "KSRTC Swift Scaniya P-Series",
                     busId: "0",
+                    is2X2Layout: ((index%2 == 0) ? true : false),
                   ),
                 ),
               ),

@@ -6,29 +6,47 @@ import 'package:novi/widgets/bus_seat.dart';
 class BusManageScreen extends StatefulWidget {
   final String busTitle;
   final String busId;
-
-  const BusManageScreen({Key? key, required this.busTitle, required this.busId}) : super(key: key);
+  final bool is2X2Layout;
+  const BusManageScreen({Key? key, required this.busTitle, required this.busId, required this.is2X2Layout, }) : super(key: key);
 
   @override
   State<BusManageScreen> createState() => _BusManageScreenState();
 }
 
 class _BusManageScreenState extends State<BusManageScreen> {
-  List<dynamic> data = [
-    [0, 0, 0, 0, 0, 0],
-    [1, 1, 0, 1, 1, 1],
-    [1, 1, 0, 1, 1, 1],
-    [1, 1, 0, 1, 1, 1],
-    [1, 1, 0, 1, 1, 1],
-    [1, 1, 0, 1, 1, 1],
-    [1, 1, 0, 1, 1, 1],
-    [1, 1, 0, 1, 1, 1],
-    [1, 1, 0, 1, 1, 1],
-    [1, 1, 0, 1, 1, 1],
-    [1, 1, 0, 1, 1, 1],
-    [1, 1, 0, 1, 1, 1],
-    [1, 1, 0, 1, 1, 1],
+  List<dynamic> layout1 = [
+    [0, 0, 0, 0, -1],
+    [1, 1, 0, 1, 1],
+    [1, 1, 0, 1, 1],
+    [1, 1, 0, 1, 1],
+    [1, 1, 0, 1, 1],
+    [1, 1, 0, 1, 1],
+    [1, 1, 0, 1, 1],
+    [1, 1, 0, 1, 1],
+    [1, 1, 0, 1, 1],
+    [1, 1, 0, 1, 1],
+    [1, 1, 0, 1, 1],
   ];
+  List<dynamic> layout2 = [
+    [0, 0, 0, 0, -1],
+    [1, 0, 1, 1, 1],
+    [1, 0, 1, 1, 1],
+    [1, 0, 1, 1, 1],
+    [1, 0, 1, 1, 1],
+    [1, 0, 1, 1, 1],
+    [1, 0, 1, 1, 1],
+    [1, 0, 1, 1, 1],
+    [1, 0, 1, 1, 1],
+    [1, 0, 1, 1, 1],
+    [1, 0, 1, 1, 1],
+  ];
+
+  List<dynamic> data = [];
+  @override
+  void initState() {
+    super.initState();
+    data = widget.is2X2Layout ? layout1 : layout2;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +57,8 @@ class _BusManageScreenState extends State<BusManageScreen> {
       appBar: AppBar(
         systemOverlayStyle: const SystemUiOverlayStyle(
           statusBarColor: Colors.black,
-          statusBarIconBrightness: Brightness.light, // For Android (dark icons)
-          statusBarBrightness: Brightness.light, // For iOS (dark icons)
+          statusBarIconBrightness: Brightness.light, 
+          statusBarBrightness: Brightness.light,
         ),
         toolbarHeight: AppBar().preferredSize.height * 1.5,
         title: Text(widget.busTitle),

@@ -17,12 +17,13 @@ class AppButtonLarge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(32),
       width: MediaQuery.of(context).size.width,
+      padding: const EdgeInsets.only(left: 12, right: 12),
+      color: Colors.transparent,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           primary: isPrimary ? AppColors.primaryColor : Colors.white,
-          minimumSize: const Size(100, 70),
+          minimumSize: const Size(100, 65),
           elevation: 3,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
         ),

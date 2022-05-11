@@ -18,11 +18,12 @@ class _AddDriverScreenState extends State<AddDriverScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         systemOverlayStyle: const SystemUiOverlayStyle(
           statusBarColor: Colors.black,
-          statusBarIconBrightness: Brightness.light, // For Android (dark icons)
-          statusBarBrightness: Brightness.light, // For iOS (dark icons)
+          statusBarIconBrightness: Brightness.light, 
+          statusBarBrightness: Brightness.light,
         ),
         toolbarHeight: AppBar().preferredSize.height * 1.5,
         title: const Text("Add Driver"),
@@ -63,12 +64,15 @@ class _AddDriverScreenState extends State<AddDriverScreen> {
             ),
             Align(
               alignment: Alignment.bottomCenter,
-              child: AppButtonLarge(
-                text: "Save",
-                onButtonClick: () {
-                  pushScreen(context  , const HomeScreen());
-                },
-                isPrimary: true,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 24, right: 24, bottom: 24, top: 4),
+                child: AppButtonLarge(
+                  text: "Save",
+                  onButtonClick: () {
+                    pushScreen(context  , const HomeScreen());
+                  },
+                  isPrimary: true,
+                ),
               ),
             )
           ],
