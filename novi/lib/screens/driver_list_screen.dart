@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:novi/screens/add_driver.dart';
-import 'package:novi/screens/bus_manage_screen.dart';
-import 'package:novi/utils.dart';
-import 'package:novi/widgets/app_buttons.dart';
-import 'package:novi/widgets/bus_card_item.dart';
+import 'package:moovebe/screens/add_driver.dart';
+import 'package:moovebe/screens/bus_manage_screen.dart';
+import 'package:moovebe/utils.dart';
+import 'package:moovebe/widgets/app_buttons.dart';
+import 'package:moovebe/widgets/bus_card_item.dart';
 
 class DriverList extends StatefulWidget {
   const DriverList({Key? key}) : super(key: key);
@@ -44,7 +44,7 @@ class _DriverListState extends State<DriverList> {
                       return Padding(
                         padding: const EdgeInsets.only(top:8.0, bottom: 8.0),
                         child: AppCardHorizontal(
-                          imageUrl: 'https://www.thenewsminute.com/sites/default/files/KSRTC_Facebook_3062021_1200.jpg',
+                          imageUrl: 'https://thumbs.dreamstime.com/b/male-driver-black-mask-driving-intercity-bus-tourism-health-people-concept-male-driver-wearing-face-protective-black-mask-198488237.jpg',
                           busName: "KSRTC",
                           description: "Licence No : 56465462131123",
                           actionText: "Delete",

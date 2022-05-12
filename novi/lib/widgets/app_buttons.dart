@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:novi/constants/app_colors.dart';
-import 'package:novi/constants/app_styles.dart';
+import 'package:moovebe/constants/app_colors.dart';
+import 'package:moovebe/constants/app_styles.dart';
 
 class AppButtonLarge extends StatelessWidget {
   final String text;

@@ -18,11 +18,13 @@ class ApiHelper {
 
   static  Future<String> getRefreshToken() async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    String? token =  preferences.getString(ACCESS_TOKEN);
+    String? token =  preferences.getString(REFRESH_TOKEN);
     return token ?? "";
   }
 
   static  Future<void> setToken({required String accessToken, required refreshToken}) async{
+    print("accessToken "+accessToken);
+    print("refreshToken "+refreshToken);
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setString(REFRESH_TOKEN,refreshToken);
     preferences.setString(ACCESS_TOKEN,accessToken);

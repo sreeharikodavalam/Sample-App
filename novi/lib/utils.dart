@@ -8,6 +8,13 @@ pushScreen(BuildContext context, screen) async {
   return result;
 }
 
+pushReplaceScreen(BuildContext context, screen) {
+  Navigator.pushReplacement(
+    context,
+    MaterialPageRoute(builder: (context) => screen),
+  );
+}
+
 Future<void> customDialog({required BuildContext context, required String title, required String description}) async {
   return showDialog<void>(
     context: context,

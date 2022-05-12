@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:novi/api/api_helper.dart';
+import 'package:moovebe/api/api_helper.dart';
 
 class ApiBus {
 

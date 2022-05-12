@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:novi/widgets/app_buttons.dart';
+import 'package:moovebe/widgets/app_buttons.dart';
 
 class AppCardHorizontal extends StatelessWidget {
   final String imageUrl;

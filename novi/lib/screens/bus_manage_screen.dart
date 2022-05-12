@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:novi/constants/app_styles.dart';
-import 'package:novi/widgets/bus_seat.dart';
+import 'package:moovebe/constants/app_styles.dart';
+import 'package:moovebe/widgets/app_buttons.dart';
+import 'package:moovebe/widgets/bus_seat.dart';
 
 class BusManageScreen extends StatefulWidget {
   final String busTitle;
   final String busId;
   final bool is2X2Layout;
-  const BusManageScreen({Key? key, required this.busTitle, required this.busId, required this.is2X2Layout, }) : super(key: key);
+
+  const BusManageScreen({
+    Key? key,
+    required this.busTitle,
+    required this.busId,
+    required this.is2X2Layout,
+  }) : super(key: key);
 
   @override
   State<BusManageScreen> createState() => _BusManageScreenState();
@@ -42,6 +49,7 @@ class _BusManageScreenState extends State<BusManageScreen> {
   ];
 
   List<dynamic> data = [];
+
   @override
   void initState() {
     super.initState();
@@ -52,12 +60,12 @@ class _BusManageScreenState extends State<BusManageScreen> {
   Widget build(BuildContext context) {
     List<int> row = data.elementAt(0);
     print(data.toString());
-    double availableWidth = (MediaQuery.of(context).size.width - 48- 32 - 3 - (row.length * 4 * 2)) / row.length;
+    double availableWidth = (MediaQuery.of(context).size.width - 48 - 32 - 3 - (row.length * 4 * 2)) / row.length;
     return Scaffold(
       appBar: AppBar(
         systemOverlayStyle: const SystemUiOverlayStyle(
           statusBarColor: Colors.black,
-          statusBarIconBrightness: Brightness.light, 
+          statusBarIconBrightness: Brightness.light,
           statusBarBrightness: Brightness.light,
         ),
         toolbarHeight: AppBar().preferredSize.height * 1.5,
@@ -119,7 +127,12 @@ class _BusManageScreenState extends State<BusManageScreen> {
                                   ? RedSeat(width: availableWidth)
                                   : columns.elementAt(j) == 0
                                       ? Container(width: availableWidth)
-                                      : BlackSeat(width: availableWidth));
+                                      : InkWell(
+                                          child: BlackSeat(width: availableWidth),
+                                          onTap: () {
+                                            changeDriver(context: context);
+                                          },
+                                        ));
                         }),
                   );
                 }),
@@ -129,3 +142,42 @@ class _BusManageScreenState extends State<BusManageScreen> {
     );
   }
 }
+
+Future<void> changeDriver({required BuildContext context}) async {
+
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return StatefulBuilder(
+      builder: (context, setState) {
+        return AlertDialog(
+          title: Text("Change Driver"),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                const SizedBox(height: 6),
+                DropdownButton<String>(value: 'Driver 1',
+                  items: <String>['Driver 1', 'Driver 2', 'Driver 3', 'Driver 4'].map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (_) {},
+                ),
+                const SizedBox(height: 8),
+                AppButtonSmall(
+                    text: "Change",
+                    onButtonClick: () {
+                      Navigator.of(context).pop();
+                    })
+              ],
+            ),
+          ),
+        );
+      },
+    );}
+    );
+  }
+

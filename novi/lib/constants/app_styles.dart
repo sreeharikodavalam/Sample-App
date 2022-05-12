@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:novi/constants/app_colors.dart';
+import 'package:moovebe/constants/app_colors.dart';
 
 class AppStyles {
   static const  TextStyle largeTextWhite = TextStyle(fontSize: 28, color: Colors.white);

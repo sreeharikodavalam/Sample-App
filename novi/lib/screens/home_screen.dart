@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:novi/screens/bus_manage_screen.dart';
-import 'package:novi/screens/driver_list_screen.dart';
-import 'package:novi/utils.dart';
-import 'package:novi/widgets/bus_card_item.dart';
+import 'package:moovebe/screens/bus_manage_screen.dart';
+import 'package:moovebe/screens/driver_list_screen.dart';
+import 'package:moovebe/utils.dart';
+import 'package:moovebe/widgets/bus_card_item.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           padding: const EdgeInsets.all(8),
-          itemCount: 25,
+          itemCount: 21,
           itemBuilder: (BuildContext context, int index) {
             return Padding(
               padding: const EdgeInsets.all(8.0),
